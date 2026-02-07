@@ -74,24 +74,37 @@ let clickCount = 0;
     }
 }
 
-async function updateWeather() {
+async function updateDanangWeather() {
     try {
-        // Sử dụng API lấy thời tiết Hà Nội miễn phí
-        const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=21.0285&longitude=105.8542&current_weather=true');
+        // Tọa độ chính xác của Đà Nẵng
+        const lat = 16.0544;
+        const lon = 108.2022;
+        const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
         const data = await response.json();
+        
         const temp = Math.round(data.current_weather.temperature);
         
-        document.getElementById('current-temp').innerText = temp + '°C';
+        const tempElement = document.getElementById('current-temp');
+        if (tempElement) {
+            tempElement.innerText = temp + '°C';
+        }
         
-        // Thay đổi icon dựa trên nhiệt độ
         const iconEl = document.getElementById('weather-icon');
-        if (temp > 30) iconEl.innerText = '☀️';
-        else if (temp < 20) iconEl.innerText = '❄️';
-        else iconEl.innerText = '☁️';
+        if (iconEl) {
+            if (temp >= 30) iconEl.innerText = '☀️';
+            else if (temp <= 20) iconEl.innerText = '🌦️'; // Đà Nẵng thường không quá lạnh như HN
+            else iconEl.innerText = '☁️';
+        }
     } catch (error) {
-        console.log("Không lấy được thời tiết");
+        console.error("Lỗi cập nhật thời tiết Đà Nẵng:", error);
     }
 }
+
+// Gọi hàm khi trang web tải xong
+document.addEventListener('DOMContentLoaded', () => {
+    updateDanangWeather();
+    setInterval(updateDanangWeather, 1800000); // Cập nhật mỗi 30 phút
+});
 
 function startDigitalSystems() {
     function updateClock() {
