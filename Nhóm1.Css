@@ -805,4 +805,59 @@ b3 {
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     color: #709ac4;
+}/* --- TỐI ƯU CHO ĐIỆN THOẠI (Responsive) --- */
+@media (max-width: 768px) {
+    /* Chuyển bố cục sang 1 cột */
+    .main-layout {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    /* Đưa cột nội dung chính lên đầy màn hình */
+    .content-col {
+        width: 100% !important;
+        padding: 0;
+    }
+
+    /* Đưa Sidebar xuống dưới cùng và bỏ cố định */
+    .sidebar-fixed {
+        width: 100% !important;
+        position: static !important;
+        margin-top: 20px;
+    }
+
+    /* Thu nhỏ banner tiêu đề */
+    .header-text-group h1 {
+        font-size: 1.5rem !important;
+    }
+
+    .sub-title {
+        font-size: 0.8rem !important;
+    }
+
+    /* Menu điều hướng dạng trượt ngang hoặc thu gọn */
+    .nav-container {
+        display: flex;
+        overflow-x: auto; /* Cho phép vuốt ngang menu trên điện thoại */
+        white-space: nowrap;
+        padding-bottom: 5px;
+        justify-content: flex-start;
+    }
+
+    .DieuHuong {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+
+    /* Tối ưu kích thước Iframe (Báo Nhân Dân/YouTube) */
+    .iframe-wrapper, .video-responsive {
+        width: 100% !important;
+        height: 350px !important; /* Giảm chiều cao trên mobile */
+    }
+    
+    /* Chỉnh lại ảnh đại diện Thủ tướng để không bị vỡ */
+    .author-info {
+        justify-content: center;
+    }
 }
