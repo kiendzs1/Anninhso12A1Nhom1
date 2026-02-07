@@ -841,7 +841,6 @@ b3 {
         display: flex;
         overflow-x: auto; /* Cho phép vuốt ngang menu trên điện thoại */
         white-space: nowrap;
-        padding-bottom: 5px;
         justify-content: flex-start;
     }
 
